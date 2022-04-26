@@ -6,60 +6,63 @@
 
 
 --------------------------------------------------------------------------------
- English | [简体中文](README_zh-CN.md)
+
+ [English](README.md) | 简体中文
 
 
 
-A curated list and survey of awesome Vision Transformers. 
+Vision Transformer 论文精选列表和总结。
 
-You can use mind mapping software to open [the mind mapping source file](media/Vision-Transformer.xmind). You can also download [the mind mapping HD pictures](media/Vision-Transformer.png) if you just want to browse them.
+你可以使用思维导图软件打开 [思维导图源文件](media/Vision-Transformer_zh-CN.xmind)，如果你只想浏览图片，则可以下载 [思维导图高清图](media/Vision-Transformer_zh-CN.png)
 
-## Contents
+
+
+## 目录
 
 <!-- toc -->
 
-- [Survey](#Survey)
-  - [Image Classification](#Image-Classification)
+- [总结](#总结)
+  - [图像分类](#图像分类)
     - [Attention-based](#Attention-based)
-      - [Training Strategy](#Training-Strategy)
-      - [Model Improvements](#Model-Improvements)
-        - [Tokenization Module](#Tokenization-Module)
-        - [Position Encoding Module](#Position-Encoding-Module)
-        - [Attention Module](#Attention-Module)
-        - [FFN Module](#FFN-Module)
-        - [Normalization Module Location](#Normalization-Module-Location)
-        - [Classification Prediction Head Module](#Classification-Prediction-Head-Module)
-        - [Others](#Others)
+      - [训练策略](#训练策略)
+      - [模型改进](#模型改进)
+        - [Token 化模块](#Token-化模块)
+        - [位置编码模块](#位置编码模块)
+        - [注意力模块](#注意力模块)
+        - [FFN 模块](#FFN-模块)
+        - [Normalization 模块位置](#Normalization-模块位置)
+        - [分类预测模块](#分类预测模块)
+        - [其他](#其他)
     - [MLP-based](#MLP-based)
     - [ConvMixer-based](#ConvMixer-based)
-    - [General Architecture Analysis](#General-Architecture-Analysis)
-    - [Others](#Others)
-  - [Object Detection](#Object-Detection)
-  - [Semantic-Segmentation](#Semantic-Segmentation)
+    - [通用架构分析](#通用架构分析)
+    - [其他](#其他)
+  - [目标检测](#目标检测)
+  - [语义分割](#语义分割)
 
-- [Papers](#Papers)
-  - [Transformer Original Paper](#Transformer-Original-Paper)
-  - [ViT Original Paper](#ViT-Original-Paper)
-  - [Image Classification](#Image-Classification)
+- [论文列表](#论文列表)
+  - [Transformer 原论文](#Transformer-原论文)
+  - [ViT 原论文](#ViT-原论文)
+  - [图像分类](#图像分类)
     - [2020](#2020)
     - [2021](#2021)
     - [2022](#2022)
-  - [Object Detection](#Object-Detection)
-  - [Semantic-Segmentation](#Semantic-Segmentation)
+  - [目标检测](#目标检测)
+  - [语义分割](#语义分割)
 
 <!-- tocstop -->
 
 
 
-## Survey
+## 总结
 
-Only typical algorithms are listed in each category.
+每个类别中仅列出典型算法
 
 
 
-### Image Classification
+### 图像分类
 
-Chinese Blogs
+中文博客链接
 
 - [Vision Transformer 必读系列之图像分类综述(一)：概述](https://zhuanlan.zhihu.com/p/459828118)
 - [Vision Transformer 必读系列之图像分类综述(二): Attention-based](https://zhuanlan.zhihu.com/p/461700507)
@@ -68,36 +71,34 @@ Chinese Blogs
 
 #### Attention-based
 
-![image](https://user-images.githubusercontent.com/17425982/150277299-3656d399-962c-4029-9dde-a2c64283de79.png)
+![image](https://user-images.githubusercontent.com/17425982/150126580-11f75810-e4da-4c38-a0fd-ee6a8c7a0a18.png)
 
-##### Training Strategy
-
-![image](https://user-images.githubusercontent.com/17425982/150277367-9a206b4b-69b3-43e1-b7e6-156d68e34234.png)
+##### 训练策略
 
 - [**DeiT**] Training data-efficient image transformers & distillation through attention (ICML 2021-2020.12) [[Paper](https://arxiv.org/abs/2012.12877)]
 - [**Token Labeling**] All Tokens Matter: Token Labeling for Training Better Vision Transformers (2021.4) [[Paper](https://arxiv.org/abs/2104.10858)]
 
 
 
-##### Model Improvements
+##### 模型改进
 
 
 
-###### Tokenization Module
+###### Token 化模块
 
 --------------------------------------------------------------------------------
 
-![image](https://user-images.githubusercontent.com/17425982/150276835-5c2558e9-9825-41cf-aa7c-766ed4bb2f8f.png)
+![image](https://user-images.githubusercontent.com/17425982/150126295-2aa4055a-b9b6-465e-89ba-5fde441d5f29.png)
 
-Image to Token：
+Image to Token 包括：
 
-- **Non-overlapping Patch Embedding**
+- **非重叠 Patch Embedding**
   
   -  [**ViT**] An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale (ICLR 2021-2020.10) [[Paper](https://arxiv.org/abs/2010.11929)]
   - [**TNT**] Transformer in Transformer (NeurIPS 2021-2021.3) [[Paper](https://arxiv.org/abs/2103.00112)]
   - [**Swin Transformer**] Swin Transformer: Hierarchical Vision Transformer using Shifted Windows (ICCV2021-2021.3) [[Paper](https://arxiv.org/abs/2103.14030)]
   
-- **Overlapping Patch Embedding**
+- **重叠 Patch Embedding**
 
   - [**T2T-ViT**] Tokens-to-Token ViT: Training Vision Transformers from Scratch on ImageNet (2021.1) [[Paper](https://arxiv.org/abs/2101.11986)]
 
@@ -111,37 +112,37 @@ Image to Token：
 
     
 
-Token to Token：
+Token to Token 包括：
 
-- **Fixed sampling window tokenization**
+- **固定采样窗口 Token 化**
   -  [**ViT**] An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale (ICLR 2021-2020.10) [[Paper](https://arxiv.org/abs/2010.11929)]
   - [**Swin Transformer**] Swin Transformer: Hierarchical Vision Transformer using Shifted Windows (ICCV2021-2021.3) [[Paper](https://arxiv.org/abs/2103.14030)]
-- **Dynamic sampling tokenization**
+- **动态采样 Token 化**
   - [**PS-ViT**] Vision Transformer with Progressive Sampling (2021.8) [[Paper](https://arxiv.org/abs/2108.01684)]
   - [**TokenLearner**] TokenLearner: What Can 8 Learned Tokens Do for Images and Videos? (2021.6) [[Paper](https://arxiv.org/abs/2106.11297)]
 
 
 
-###### Position Encoding Module
+###### 位置编码模块
 
 --------------------------------------------------------------------------------
 
-![image](https://user-images.githubusercontent.com/17425982/150276469-b756df37-b727-46ef-8e69-039d0a291729.png)
+![image](https://user-images.githubusercontent.com/17425982/150076359-5259dc0c-ef37-4a33-8139-63553aa85c09.png)
 
-Explicit position encoding：
+显式位置编码包括：
 
-- Absolute position encoding
+- 绝对位置编码
   - [**Transformer**] Attention is All You Need] (NIPS 2017-2017.06) [[Paper](https://arxiv.org/abs/1706.03762)]
   - [**ViT**] An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale (ICLR 2021-2020.10) [[Paper](https://arxiv.org/abs/2010.11929)]
   - [**PVT**] Pyramid Vision Transformer: A Versatile Backbone for Dense Prediction without Convolutions (2021.2) [[Paper](https://arxiv.org/abs/2102.12122)]
-- Relative position encoding
+- 相对位置编码
   - [**Swin Transformer**] Swin Transformer: Hierarchical Vision Transformer using Shifted Windows (ICCV2021-2021.3) [[Paper](https://arxiv.org/abs/2103.14030)]
   - [**Swin Transformer V2**] Swin Transformer V2: Scaling Up Capacity and Resolution (2021.11) [[Paper](https://arxiv.org/abs/2111.09883)]
   - [**Imporved MViT**] Improved Multiscale Vision Transformers for Classification and Detection (2021.12) [[Paper](https://arxiv.org/abs/2112.01526)]
 
 
 
-Implicit position encoding：
+隐式位置编码包括：
 
 - [**CPVT**] Conditional Positional Encodings for Vision Transformers (2021.2) [[Paper](https://arxiv.org/abs/2102.10882)]
 - [**CSWin Transformer**] CSWin Transformer: A General Vision Transformer Backbone with Cross-Shaped Windows (2021.07) [[Paper](https://arxiv.org/abs/2107.00652)]
@@ -150,19 +151,19 @@ Implicit position encoding：
 
 
 
-###### Attention Module
+###### 注意力模块
 
 --------------------------------------------------------------------------------
 
-![image](https://user-images.githubusercontent.com/17425982/150276274-9e7463cc-f7b2-4914-9ebf-f32012782ca9.png)
+![image](https://user-images.githubusercontent.com/17425982/150076656-db44a11a-a98f-479c-86c3-23119083923e.png)
 
-Include only global attention：
+仅包括全局注意力包括：
 
-- Multi-Head attention module
+- 标准多头注意力模块
 
   - [**ViT**] An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale (ICLR 2021-2020.10) [[Paper](https://arxiv.org/abs/2010.11929)]
 
-- Reduce global attention computation
+- 减少全局注意力计算量
 
   - [**PVT**] Pyramid Vision Transformer: A Versatile Backbone for Dense Prediction without Convolutions (2021.2) [[Paper](https://arxiv.org/abs/2102.12122)]
 
@@ -173,15 +174,15 @@ Include only global attention：
   - [**MViT**] Multiscale Vision Transformers (2021.4) [[Paper](https://arxiv.org/abs/2104.11227)]
   - [**Imporved MViT**] Improved Multiscale Vision Transformers for Classification and Detection (2021.12) [[Paper](https://arxiv.org/abs/2112.01526)]
 
-- Generalized linear attention
+- 广义线性注意力
 
   - [**T2T-ViT**] Tokens-to-Token ViT: Training Vision Transformers from Scratch on ImageNet (2021.1) [[Paper](https://arxiv.org/abs/2101.11986)]
 
 
 
-Introduce extra local attention：
+引入额外局部注意力包括：
 
-- Local window mode
+- 局部窗口计算模式
   - [**Swin Transformer**] Swin Transformer: Hierarchical Vision Transformer using Shifted Windows (ICCV2021-2021.3) [[Paper](https://arxiv.org/abs/2103.14030)]
   - [**Swin Transformer V2**] Swin Transformer V2: Scaling Up Capacity and Resolution (2021.11) [[Paper](https://arxiv.org/abs/2111.09883)]
   - [**Imporved MViT**] Improved Multiscale Vision Transformers for Classification and Detection (2021.12) [[Paper](https://arxiv.org/abs/2112.01526)]
@@ -191,32 +192,34 @@ Introduce extra local attention：
   - [**MSG-Transformer**] MSG-Transformer: Exchanging Local Spatial Information by Manipulating Messenger Tokens (2021.5) [[Paper](https://arxiv.org/abs/2105.15168)]
   - [**CSWin Transformer**] CSWin Transformer: A General Vision Transformer Backbone with Cross-Shaped Windows (2021.07) [[Paper](https://arxiv.org/abs/2107.00652)]
 
-- Introduce convolutional local inductive bias
+
+
+- 引入卷积局部归纳偏置
   - [**ViTAE**] ViTAE: Vision Transformer Advanced by Exploring Intrinsic Inductive Bias (2021.6) [[Paper](https://arxiv.org/abs/2106.03348)]
   - [**ELSA**] ELSA: Enhanced Local Self-Attention for Vision Transformer (2021.12) [[Paper](https://arxiv.org/abs/2112.12786)]
-- Sparse attention
+- 稀疏注意力
   - [**Sparse Transformer**] Sparse Transformer: Concentrated Attention Through Explicit Selection [[Paper](https://openreview.net/pdf?id=Hye87grYDH)]
 
 
 
-###### FFN Module
+###### FFN 模块
 
 --------------------------------------------------------------------------------
 
-![image](https://user-images.githubusercontent.com/17425982/150272284-8ed5b2be-fbe0-4c3c-9885-0577f47f310c.png)
+![image](https://user-images.githubusercontent.com/17425982/150076776-30b210c3-d71d-4e97-bf24-7f19554ec2e6.png)
 
-Improve performance with Conv's local information extraction capability：
+通过 Conv 局部信息提取能力，提升性能包括：
 
 - [**LocalViT**] LocalViT: Bringing Locality to Vision Transformers (2021.4) [[Paper](https://arxiv.org/abs/2104.05707)]
 - [**CeiT**] Incorporating Convolution Designs into Visual Transformers (2021.3) [[Paper](https://arxiv.org/abs/2103.11816)]
 
 
 
-###### Normalization Module Location
+###### Normalization 模块位置
 
 --------------------------------------------------------------------------------
 
-![image](https://user-images.githubusercontent.com/17425982/150266034-792b8987-2654-49df-9410-043c40d320f8.png)
+![image](https://user-images.githubusercontent.com/17425982/150076857-39e23911-81c2-4796-9da7-1c77722de622.png)
 
 - Pre Normalization
   - [**ViT**] An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale (ICLR 2021-2020.10) [[Paper](https://arxiv.org/abs/2010.11929)]
@@ -227,11 +230,11 @@ Improve performance with Conv's local information extraction capability：
 
 
 
-###### Classification Prediction Head Module
+###### 分类预测模块
 
 --------------------------------------------------------------------------------
 
-![image](https://user-images.githubusercontent.com/17425982/150265671-ed284f48-8004-4e42-a9a9-f72d115026ce.png)
+![image](https://user-images.githubusercontent.com/17425982/150076961-049f5031-f5ad-4cb6-aac9-091cc3316c78.png)
 
 - Class Tokens
   - [**ViT**] An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale (ICLR 2021-2020.10) [[Paper](https://arxiv.org/abs/2010.11929)]
@@ -244,15 +247,15 @@ Improve performance with Conv's local information extraction capability：
 
 
 
-###### Others
+###### 其他
 
 --------------------------------------------------------------------------------
 
-![image](https://user-images.githubusercontent.com/17425982/150269740-11f77408-76dc-4a63-b813-b34505e627a5.png)
+![image](https://user-images.githubusercontent.com/17425982/150126405-cacdf828-669b-4cb1-894c-894f21b31873.png)
 
-**(1) How to output multi-scale feature map**
+**(1) 如何输出多尺度特征图**
 
-- Patch merging
+- Patch Merging
   - [**PVT**] Pyramid Vision Transformer: A Versatile Backbone for Dense Prediction without Convolutions (2021.2) [[Paper](https://arxiv.org/abs/2102.12122)]
   - [**Twins**] Twins: Revisiting the Design of Spatial Attention in Vision Transformers (2021.4) [[Paper](https://arxiv.org/abs/2104.13840)]
   - [**Swin Transformer**] Swin Transformer: Hierarchical Vision Transformer using Shifted Windows (ICCV2021-2021.3) [[Paper](https://arxiv.org/abs/2103.14030)]
@@ -260,18 +263,16 @@ Improve performance with Conv's local information extraction capability：
   - [**CSWin Transformer**] CSWin Transformer: A General Vision Transformer Backbone with Cross-Shaped Windows (2021.07) [[Paper](https://arxiv.org/abs/2107.00652)]
   - [**MetaFormer**] MetaFormer is Actually What You Need for Vision (2021.11) [[Paper](https://arxiv.org/abs/2111.11418)]
 
-- Pooling attention 
-
+-  Pooling Attention 
   - [**MViT**] Multiscale Vision Transformers (2021.4) [[Paper](https://arxiv.org/abs/2104.11227)][**Imporved MViT**] 
-
   - [**Imporved MViT**] Improved Multiscale Vision Transformers for Classification and Detection (2021.12) [[Paper](https://arxiv.org/abs/2112.01526)]
 
-- Dilation convolution
+- 空洞卷积
   - [**ViTAE**] ViTAE: Vision Transformer Advanced by Exploring Intrinsic Inductive Bias (2021.6) [[Paper](https://arxiv.org/abs/2106.03348)]
 
 
 
-**(2) How to train a deeper Transformer**
+**(2) 如何训练更深的 Transformer**
 
 - [**Cait**] Going deeper with Image Transformers (2021.3) [[Paper](https://arxiv.org/abs/2103.17239)]
 - [**DeepViT**] DeepViT: Towards Deeper Vision Transformer (2021.3) [[Paper](https://arxiv.org/abs/2103.11886)]
@@ -280,7 +281,7 @@ Improve performance with Conv's local information extraction capability：
 
 #### MLP-based
 
-![image](https://user-images.githubusercontent.com/17425982/150264115-71f2b7c3-5e22-44b7-a7d2-f54de6b38734.png)
+![image](https://user-images.githubusercontent.com/17425982/150077191-a40b77a4-8397-4bc1-ba17-15e3b5588439.png)
 
 - [**MLP-Mixer**] MLP-Mixer: An all-MLP Architecture for Vision (2021.5) [[Paper](https://arxiv.org/abs/2105.01601)]
 
@@ -298,9 +299,9 @@ Improve performance with Conv's local information extraction capability：
 
   
 
-#### General Architecture Analysis
+#### 通用架构分析
 
-![image](https://user-images.githubusercontent.com/17425982/150263392-656e406b-0e28-4810-a3bd-a3aec6bfee8d.png)
+![image](https://user-images.githubusercontent.com/17425982/150077586-bd3e18f6-2360-4586-892a-f1756984356b.png)
 
 - Demystifying Local Vision Transformer: Sparse Connectivity, Weight Sharing, and Dynamic Weight (2021.6) [[Paper](https://arxiv.org/abs/2106.04263)]
 - A Battle of Network Structures: An Empirical Study of CNN, Transformer, and MLP (2021.8) [[Paper](https://arxiv.org/abs/2108.13002)]
@@ -309,37 +310,37 @@ Improve performance with Conv's local information extraction capability：
 
 
 
-#### Others
+#### 其他
 
 
 
-### Object Detection
+### 目标检测
 
 
 
-### Semantic Segmentation
+### 语义分割
 
-**[⬆ back to top](#Contents)**
-
-
-
-## Papers
+**[⬆ 回到顶部](#目录)**
 
 
 
-### Transformer Original Paper
+## 论文列表
+
+
+
+### Transformer 原论文
 
 - [**Transformer**] Attention is All You Need] (NIPS 2017-2017.06) [[Paper](https://arxiv.org/abs/1706.03762)]
 
 
 
-### ViT Original Paper
+### ViT 原论文
 
 - [**ViT**] An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale (ICLR 2021-2020.10) [[Paper](https://arxiv.org/abs/2010.11929)]
 
 
 
-### Image Classification
+### 图像分类
 
 
 
@@ -397,15 +398,17 @@ Improve performance with Conv's local information extraction capability：
 
 
 
-### Object Detection
+### 目标检测
 
 
 
-### Semantic Segmentation
+### 语义分割
 
-**[⬆ back to top](#Contents)**
+**[⬆ 回到顶部](#目录)**
 
 
 
-Stay tuned and PRs are welcomed!
+后续会持续更新，欢迎提 PR！
+
+
 
